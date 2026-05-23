@@ -1,4 +1,5 @@
 import { Name } from "../value-objects/Name";
+import { Email } from "../value-objects/Email";
 
 
 interface UserProps {
@@ -22,7 +23,7 @@ export class User {
     constructor({ id, name, email, password, createdAt, updatedAt }: UserProps) {
         this.id = id;
         this.name = new Name(name).value;
-        this.email = email;
+        this.email = new Email(email).value;
         this.password = password;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;

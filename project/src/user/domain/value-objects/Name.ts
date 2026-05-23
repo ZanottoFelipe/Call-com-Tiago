@@ -1,3 +1,5 @@
+import { InvalidNameException } from '../exceptions/InvalidNameException';
+
 export class Name {
     public readonly value: string;
 
@@ -5,12 +7,12 @@ export class Name {
         this.value = this.validate(value);
     }
 
-    validate(value: string): string {
+    private validate(value: string): string {
         if (!value || value.trim().length === 0) {
-            throw new Error('Name cannot be empty');
+            throw new InvalidNameException('Name cannot be empty');
         }
         if (value.length > 255) {
-            throw new Error('Name cannot be longer than 255 characters');
+            throw new InvalidNameException('Name cannot be longer than 255 characters');
         }
         return value;
     }
