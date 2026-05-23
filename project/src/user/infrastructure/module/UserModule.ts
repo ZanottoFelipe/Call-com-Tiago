@@ -6,8 +6,9 @@ import { CreateUserUseCase } from "src/user/application/use-cases/create-user/Cr
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { IEventEmitter } from "src/user/application/ports/IEventEmitter";
 import { NestEventEmitterAdapter } from "../events/NestEventEmitterAdapter";
-import { User } from "src/user/domain/entities/User";
 import { UserCreatedListener } from "../listners/UserCreatedListener";
+import { IHasher } from "src/user/application/ports/IHasher";
+import { BcryptHasher } from "../cryptography/BcryptHasher";
 
 @Module({
     imports: [
@@ -31,8 +32,12 @@ import { UserCreatedListener } from "../listners/UserCreatedListener";
             provide: IEventEmitter,
             useClass: NestEventEmitterAdapter,
         },
+        {
+            provide: IHasher,
+            useClass: BcryptHasher,
+        },
         CreateUserUseCase,
-        UserCreatedListener
+        UserCreatedListener,
     ],
 })
 export class UserModule { }

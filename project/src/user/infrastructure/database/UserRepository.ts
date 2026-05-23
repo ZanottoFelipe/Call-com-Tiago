@@ -9,13 +9,8 @@ export class UserRepository extends IUserRepository {
 
 
     async create(user: User): Promise<User> {
-        const createdUser = await this.prisma.user.upsert({
-            where: { email: user.email },
-            update: {
-                name: user.name,
-                password: user.password,
-            },
-            create: {
+        const createdUser = await this.prisma.user.create({
+            data: {
                 email: user.email,
                 name: user.name,
                 password: user.password!,
