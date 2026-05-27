@@ -2,12 +2,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DataBaseModule } from './shared/DataBaseModule';
-import { UserModule } from './user/infrastructure/module/UserModule';
-import { EventEmitterModule } from '@nestjs/event-emitter';
-import { AuthModule } from './shared/auth/auth.module';
+import { AuthModule } from './auth/auth.module';
+import { UserClientModule } from './user-client/user-client.module';
 
 @Module({
-  imports: [DataBaseModule, EventEmitterModule.forRoot(), UserModule, AuthModule],
+  imports: [DataBaseModule, AuthModule, UserClientModule],
   controllers: [AppController],
   providers: [AppService],
 })

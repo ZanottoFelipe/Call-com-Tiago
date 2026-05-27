@@ -1,5 +1,6 @@
 import { Name } from "../value-objects/Name";
 import { Email } from "../value-objects/Email";
+import { plainToClass } from "class-transformer";
 
 
 interface UserProps {

@@ -3,6 +3,7 @@ import { UserRepository } from "../database/UserRepository";
 import { IUserRepository } from "src/user/domain/repositories/IUserRepository";
 import { UserController } from "../http/UserController";
 import { CreateUserUseCase } from "src/user/application/use-cases/create-user/CreateUser";
+import { FindUserByEmailUseCase } from "src/user/application/use-cases/find-user-by-email/FindUserByEmail";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { IEventEmitter } from "src/user/application/ports/IEventEmitter";
 import { NestEventEmitterAdapter } from "../events/NestEventEmitterAdapter";
@@ -37,6 +38,7 @@ import { BcryptHasher } from "../cryptography/BcryptHasher";
             useClass: BcryptHasher,
         },
         CreateUserUseCase,
+        FindUserByEmailUseCase,
         UserCreatedListener,
     ],
 })
